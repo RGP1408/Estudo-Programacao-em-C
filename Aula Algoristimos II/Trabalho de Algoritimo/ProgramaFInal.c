@@ -11,7 +11,7 @@ typedef struct vetor_t{
 typedef void (*AlgoritmoOrdenacao) (int*, int, int);
 
 
-void BubbleSort(int *V, int nao_usado, int N){ //Ordenação BubbleSort com a modificação.
+void BubbleSort(int *V, int nao_usado, int N){ //OrdenaÃ§Ã£o BubbleSort com a modificaÃ§Ã£o.
     int i, Continua, Aux, Fim = N;
     do{
         Continua = 0;
@@ -28,7 +28,7 @@ void BubbleSort(int *V, int nao_usado, int N){ //Ordenação BubbleSort com a modi
     }while(Continua != 0);
 
 }
-void InsertSort(int *V, int nao_usado, int N){ //Ordenação InsertSort com a modificação.
+void InsertSort(int *V, int nao_usado, int N){ //OrdenaÃ§Ã£o InsertSort com a modificaÃ§Ã£o.
     int i, j, Aux;
     for(i = 1; i < N; i++){
         Aux = V[i];
@@ -123,14 +123,14 @@ int Particionar(int *v, int Inicio, int Fim){
     int j = Fim-1;
     while (i <= j)
     {
-        if (pivot > v[i])
+        if (pivot >= v[i])
         {
             i++;
         }
 
         else if (pivot < v[j])
         {
-            j--;
+            --j;
         }
 
         else
@@ -138,7 +138,7 @@ int Particionar(int *v, int Inicio, int Fim){
             int temp = v[i];
             v[i] = v[j];
             v[j] = temp;
-            i++; j--;
+            --i; --j;
         }
     }
     v[Inicio] = v[j];
@@ -149,7 +149,7 @@ void QuickSort(int *V, int Inicio, int Fim){
     int Pivo, contador = 0;
     if(Fim > Inicio){
         Pivo = Particionar(V, Inicio, Fim);
-        QuickSort(V, Inicio, Pivo);
+        QuickSort(V, Inicio, Pivo-1);
         QuickSort(V, Pivo+1, Fim);
     }
 }
@@ -163,16 +163,16 @@ Vetor novo_vetor(){
     int condicao = 0;
     int R = 0;
     do {
-        printf("Escolha um Tamanho do Vetor\n");
-        printf("(1)10000!\n(2)50000!\n(3)100000!\n(4)500000!\n(5)1000000!\n(6)5000000!\n(7)10000000!\n");
+        printf("Escolha o Tamanho do Vetor\n");
+        printf("(1)10.000\n(2)50.000\n(3)100.000\n(4)500.000\n(5)1.000.000!\n(6)5.000.000!\n(7)10.000.000\n");
         printf("Digite uma opcao: ");
         scanf("%d", &R);
-        if((R < 1) || (R > 5)){
+        if((R < 1) || (R > 7)){
                 printf("Numero incorreto !!\n");
                 printf("Por Favor escolha uma opcao\n");
                 condicao = 1;
             }
-    } while (condicao = 0 );
+    } while (condicao == 1 );
 
     switch(R){
         case 1: R = 10000;
@@ -220,7 +220,7 @@ AlgoritmoOrdenacao seleciona_metodo_de_ordenacao(){
             printf("Por Favor escolha uma opcao\n");
             condicao = 1;
         }
-    }while(condicao = 0);
+    }while(condicao == 1);
 
     switch(R){
 
